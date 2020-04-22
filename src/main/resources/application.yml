@@ -1,0 +1,6 @@
+artemis:
+  broker-url: tcp://localhost:61616
+  broker-user: admin
+  broker-password: password
+  broker-consumer-concurrency: 10
+  #5-10
