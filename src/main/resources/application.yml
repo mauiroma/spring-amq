@@ -1,6 +1,15 @@
 artemis:
-  broker-url: tcp://localhost:61616
+  #broker-url: tcp://rhel7:61616
+  broker-url: (tcp://rhel7:61616,tcp://rhel7:62616)?ha=true
   broker-user: admin
   broker-password: password
   broker-consumer-concurrency: 10
   #5-10
+logging:
+  pattern:
+    #console: "[%thread]:%msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    - ".=info"
+    - "it.mauiroma=debug"
+    - "org.springframework=info"

@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import sun.security.util.Cache;
+
+import java.util.Random;
 
 @Configuration
 @EnableJms
@@ -25,7 +28,7 @@ public class ReceiverConfig {
 
   @Bean
   public ActiveMQConnectionFactory receiverActiveMQConnectionFactory() {
-    return new ActiveMQConnectionFactory(brokerUrl, brokerUser,brokerPassword);
+    return  new ActiveMQConnectionFactory(brokerUrl, brokerUser,brokerPassword);
   }
 
   @Bean
@@ -33,6 +36,8 @@ public class ReceiverConfig {
     DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
     factory.setConnectionFactory(receiverActiveMQConnectionFactory());
     factory.setConcurrency(brokerConsumerConcurrency);
+    factory.setErrorHandler(new CustomErrorHandler());
+    factory.setSessionTransacted(true);
     return factory;
   }
 

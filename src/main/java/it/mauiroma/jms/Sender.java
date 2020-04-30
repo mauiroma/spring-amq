@@ -15,6 +15,6 @@ public class Sender {
 
   public void send(String message) {
     LOGGER.info("sending message='{}'", message);
-    jmsTemplate.convertAndSend("EAPQueue", message);
+    jmsTemplate.convertAndSend("TestQueue", message);
   }
 }

@@ -10,8 +10,11 @@ public class Receiver {
   private static final Logger LOGGER =
       LoggerFactory.getLogger(Receiver.class);
 
-  @JmsListener(destination = "EAPQueue")
+  @JmsListener(destination = "TestQueue")
   public void receive(String message) {
     LOGGER.info("received message='{}'", message);
+    if (message.equalsIgnoreCase("error")){
+      throw new RuntimeException("Managed Error");
+    }
   }
 }
