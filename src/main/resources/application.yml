@@ -1,15 +1,24 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    jms:
+      enabled: false
+    diskSpace:
+      enabled: false
 artemis:
   #broker-url: tcp://rhel7:61616
-  broker-url: (tcp://rhel7:61616,tcp://rhel7:62616)?ha=true
-  broker-user: admin
+  #broker-url: (tcp://rhel7:61616,tcp://rhel7:62616)?ha=true
+  broker-url: (tcp://amq.mauiroma.it:61616,tcp://amq1.mauiroma.it:62616)?ha=true
+  broker-user: amq
   broker-password: password
-  broker-consumer-concurrency: 10
-  #5-10
+  broker-consumer-concurrency: 5-10
+  destination: Queue
 logging:
   pattern:
-    #console: "[%thread]:%msg%n"
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   level:
-    - ".=info"
-    - "it.mauiroma=debug"
-    - "org.springframework=info"
+    it.mauiroma: debug
+    org.springframework: info
+    org.apache.activemq.artemis: info
