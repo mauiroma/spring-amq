@@ -17,6 +17,7 @@ public class Receiver {
   public void receive(String message) {
     LOGGER.info("received message='{}'", message);
     if (message.equalsIgnoreCase("error")){
+      LOGGER.info("going in error");
       throw new RuntimeException("Managed Error");
     }
     if (message.equalsIgnoreCase("sleep")){
